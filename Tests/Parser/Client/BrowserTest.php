@@ -135,9 +135,7 @@ class BrowserTest extends TestCase
      */
     public function getFixturesBrowserHints(): array
     {
-        $method = new \ReflectionMethod(BrowserHints::class, 'getRegexes');
-        $method->setAccessible(true);
-        $hints    = $method->invoke(new BrowserHints());
+        $hints    = (new BrowserHints())->computeRegexes();
         $fixtures = [];
 
         foreach ($hints as $name) {
