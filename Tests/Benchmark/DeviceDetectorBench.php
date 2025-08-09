@@ -5,11 +5,23 @@ declare(strict_types=1);
 namespace DeviceDetector\Tests\Benchmark;
 
 use DeviceDetector\Cache\StaticCache;
+use DeviceDetector\Parser\Bot;
+use DeviceDetector\Parser\Client\Browser;
 use DeviceDetector\Parser\Client\FastFeedReader;
-use DeviceDetector\Tests\Benchmark\Cache\NoopCache;
-use DeviceDetector\Parser\Client\AbstractClientParser;
 use DeviceDetector\Parser\Client\FeedReader;
-use DeviceDetector\Tests\Benchmark\Cache\ApcuCache;
+use DeviceDetector\Parser\Client\Library;
+use DeviceDetector\Parser\Client\MediaPlayer;
+use DeviceDetector\Parser\Client\MobileApp;
+use DeviceDetector\Parser\Client\PIM;
+use DeviceDetector\Parser\Device\Camera;
+use DeviceDetector\Parser\Device\CarBrowser;
+use DeviceDetector\Parser\Device\Console;
+use DeviceDetector\Parser\Device\HbbTv;
+use DeviceDetector\Parser\Device\Mobile;
+use DeviceDetector\Parser\Device\Notebook;
+use DeviceDetector\Parser\Device\PortableMediaPlayer;
+use DeviceDetector\Parser\Device\ShellTv;
+use DeviceDetector\Tests\Benchmark\Cache\NoopCache;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
 use PhpBench\Attributes\Revs;
@@ -22,8 +34,7 @@ use PhpBench\Attributes\Warmup;
  */
 class DeviceDetectorBench
 {
-
-    #[Warmup(100), Iterations(1), Revs(1000), ParamProviders('provideParsers')]
+    #[Warmup(10), Iterations(1), Revs(100), ParamProviders('provideParsers')]
     public function benchParsers(array $parserClass): void
     {
         $parserClass = $parserClass[0];
@@ -33,7 +44,7 @@ class DeviceDetectorBench
         $parser->parse();
     }
 
-    #[Warmup(100), Iterations(1), Revs(1000), ParamProviders('provideParsers')]
+    #[Warmup(10), Iterations(1), Revs(100), ParamProviders('provideParsers')]
     public function benchParsersWithCache(array $parserClass): void
     {
         $parserClass = $parserClass[0];
@@ -42,6 +53,7 @@ class DeviceDetectorBench
         $parser->setCache(new StaticCache());
         $parser->parse();
     }
+
     public function provideParsers()
     {
         yield FeedReader::class => [FeedReader::class];
