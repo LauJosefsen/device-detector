@@ -21,6 +21,8 @@ use DeviceDetector\Parser\Client\AbstractClientParser;
  */
 class Engine extends AbstractClientParser
 {
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_BROWSER_ENGINE_REGEXES;
+
     /**
      * @var string
      */
