@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class CarBrowser extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_CARBROWSER_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_CARBROWSER_REGEXES;
+
     /**
      * @var string
      */

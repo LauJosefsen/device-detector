@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Client;
  */
 class MediaPlayer extends AbstractClientParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_MEDIAPLAYER_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_MEDIAPLAYER_REGEXES;
+
     /**
      * @var string
      */

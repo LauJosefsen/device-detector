@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class Notebook extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_NOTEBOOK_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_NOTEBOOK_REGEXES;
+
     protected $fixtureFile = 'regexes/device/notebooks.yml';
 
     protected $parserName = 'notebook';

@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class PortableMediaPlayer extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_PORTABLEMEDIAPLAYER_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_PORTABLEMEDIAPLAYER_REGEXES;
+
     /**
      * @var string
      */

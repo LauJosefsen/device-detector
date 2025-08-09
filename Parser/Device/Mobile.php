@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class Mobile extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_MOBILE_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_MOBILE_REGEXES;
+
     /**
      * @var string
      */

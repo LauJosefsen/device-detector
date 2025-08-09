@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class Camera extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_CAMERA_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_CAMERA_REGEXES;
+
     /**
      * @var string
      */

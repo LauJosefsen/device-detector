@@ -75,7 +75,7 @@ class Engine extends AbstractClientParser
     {
         $matches = false;
 
-        foreach ($this->getRegexes() as $regex) {
+        foreach ($this->regexList as $regex) {
             $matches = $this->matchUserAgent($regex['regex']);
 
             if ($matches) {

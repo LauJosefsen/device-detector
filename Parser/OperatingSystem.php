@@ -24,6 +24,8 @@ use DeviceDetector\ClientHints;
  */
 class OperatingSystem extends AbstractParser
 {
+    protected $overAllMatch = PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_OPERATINGSYSTEM_OVERALL_MATCH;
+    protected $regexList = PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_OPERATINGSYSTEM_REGEXES;
     /**
      * @var string
      */
@@ -638,7 +640,7 @@ class OperatingSystem extends AbstractParser
         $osRegex = $matches = [];
         $name    = $version = $short = '';
 
-        foreach ($this->getRegexes() as $osRegex) {
+        foreach ($this->regexList as $osRegex) {
             $matches = $this->matchUserAgent($osRegex['regex']);
 
             if ($matches) {

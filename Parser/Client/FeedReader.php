@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Client;
  */
 class FeedReader extends AbstractClientParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_FEEDREADER_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_FEEDREADER_REGEXES;
+
     /**
      * @var string
      */

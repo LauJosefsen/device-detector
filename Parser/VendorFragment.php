@@ -19,6 +19,7 @@ namespace DeviceDetector\Parser;
  */
 class VendorFragment extends AbstractParser
 {
+    protected $regexList = PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_VENDORFRAGMENT_REGEXES;
     /**
      * @var string
      */
@@ -39,7 +40,7 @@ class VendorFragment extends AbstractParser
      */
     public function parse(): ?array
     {
-        foreach ($this->getRegexes() as $brand => $regexes) {
+        foreach ($this->regexList as $brand => $regexes) {
             foreach ($regexes as $regex) {
                 if ($this->matchUserAgent($regex . '[^a-z0-9]+')) {
                     $this->matchedRegex = $regex;

@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Client;
  */
 class Library extends AbstractClientParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_LIBRARY_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_LIBRARY_REGEXES;
+
     /**
      * @var string
      */

@@ -273,37 +273,17 @@ abstract class AbstractParser
         return new Spyc();
     }
 
-    /**
-     * Returns the result of the parsed yml file defined in $fixtureFile
-     *
-     * @return array
-     */
-    protected function getRegexes(): array
+    public function computeRegexes(): array
     {
-        if (empty($this->regexList)) {
-            $cacheKey     = 'DeviceDetector-' . DeviceDetector::VERSION . 'regexes-' . $this->getName();
-            $cacheKey     = (string) \preg_replace('/([^a-z0-9_-]+)/i', '', $cacheKey);
-            $cacheContent = $this->getCache()->fetch($cacheKey);
+        $parsedContent = $this->getYamlParser()->parseFile(
+            $this->getRegexesDirectory() . DIRECTORY_SEPARATOR . $this->fixtureFile
+        );
 
-            if (\is_array($cacheContent)) {
-                $this->regexList = $cacheContent;
-            }
-
-            if (empty($this->regexList)) {
-                $parsedContent = $this->getYamlParser()->parseFile(
-                    $this->getRegexesDirectory() . DIRECTORY_SEPARATOR . $this->fixtureFile
-                );
-
-                if (!\is_array($parsedContent)) {
-                    $parsedContent = [];
-                }
-
-                $this->regexList = $parsedContent;
-                $this->getCache()->save($cacheKey, $this->regexList);
-            }
+        if (!\is_array($parsedContent)) {
+            $parsedContent = [];
         }
 
-        return $this->regexList;
+        return $parsedContent;
     }
 
     /**
@@ -454,28 +434,15 @@ abstract class AbstractParser
      */
     protected function preMatchOverall(): ?array
     {
-        $regexes = $this->getRegexes();
-
-        $cacheKey = $this->parserName . DeviceDetector::VERSION . '-all';
-        $cacheKey = (string) \preg_replace('/([^a-z0-9_-]+)/i', '', $cacheKey);
-
-        if (empty($this->overAllMatch)) {
-            $overAllMatch = $this->getCache()->fetch($cacheKey);
-
-            if (\is_string($overAllMatch)) {
-                $this->overAllMatch = $overAllMatch;
-            }
-        }
-
-        if (empty($this->overAllMatch)) {
-            // reverse all regexes, so we have the generic one first, which already matches most patterns
-            $this->overAllMatch = \array_reduce(\array_reverse($regexes), static function ($val1, $val2) {
-                return !empty($val1) ? $val1 . '|' . $val2['regex'] : $val2['regex'];
-            });
-            $this->getCache()->save($cacheKey, $this->overAllMatch);
-        }
-
         return $this->matchUserAgent($this->overAllMatch);
+    }
+
+    public function getOverallMatch(): string{
+        $regexes = $this->computeRegexes();
+
+        return \array_reduce(\array_reverse($regexes), static function ($val1, $val2) {
+            return !empty($val1) ? $val1 . '|' . $val2['regex'] : $val2['regex'];
+        });
     }
 
     /**

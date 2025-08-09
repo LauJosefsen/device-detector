@@ -25,6 +25,9 @@ use DeviceDetector\Yaml\ParserInterface as YamlParser;
  */
 class Browser extends AbstractClientParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_BROWSER_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_BROWSER_REGEXES;
+
     /**
      * @var BrowserHints
      */
@@ -1185,7 +1188,7 @@ class Browser extends AbstractClientParser
      */
     protected function parseBrowserFromUserAgent(): array
     {
-        foreach ($this->getRegexes() as $regex) {
+        foreach ($this->regexList as $regex) {
             $matches = $this->matchUserAgent($regex['regex']);
 
             if ($matches) {

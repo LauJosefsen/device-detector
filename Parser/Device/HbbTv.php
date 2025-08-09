@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class HbbTv extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_HBBTV_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_HBBTV_REGEXES;
+
     /**
      * @var string
      */

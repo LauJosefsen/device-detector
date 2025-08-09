@@ -24,6 +24,9 @@ use DeviceDetector\Yaml\ParserInterface as YamlParser;
  */
 class MobileApp extends AbstractClientParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_MOBILEAPP_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_MOBILEAPP_REGEXES;
+
     /**
      * @var AppHints
      */

@@ -46,7 +46,7 @@ abstract class AbstractClientParser extends AbstractParser
         $result = null;
 
         if ($this->preMatchOverall()) {
-            foreach ($this->getRegexes() as $regex) {
+            foreach ($this->regexList as $regex) {
                 $matches = $this->matchUserAgent($regex['regex']);
 
                 if ($matches) {
@@ -74,7 +74,7 @@ abstract class AbstractClientParser extends AbstractParser
     public static function getAvailableClients(): array
     {
         $instance = new static(); // @phpstan-ignore-line
-        $regexes  = $instance->getRegexes();
+        $regexes  = $instance->regexList;
         $names    = [];
 
         foreach ($regexes as $regex) {

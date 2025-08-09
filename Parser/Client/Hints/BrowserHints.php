@@ -16,6 +16,8 @@ use DeviceDetector\Parser\AbstractParser;
 
 class BrowserHints extends AbstractParser
 {
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_CLIENT_HINTS_BROWSERHINTS_REGEXES;
+
     /**
      * @var string
      */
@@ -38,7 +40,7 @@ class BrowserHints extends AbstractParser
         }
 
         $appId = $this->clientHints->getApp();
-        $name  = $this->getRegexes()[$appId] ?? null;
+        $name  = $this->regexList[$appId] ?? null;
 
         if ('' === (string) $name) {
             return null;

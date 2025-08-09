@@ -19,6 +19,9 @@ namespace DeviceDetector\Parser\Device;
  */
 class Console extends AbstractDeviceParser
 {
+    protected $overAllMatch = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_CONSOLE_OVERALL_MATCH;
+    protected $regexList = \DeviceDetector\Parser\PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_DEVICE_CONSOLE_REGEXES;
+
     /**
      * @var string
      */

@@ -9,6 +9,8 @@ use DeviceDetector\Parser\Bot;
 use DeviceDetector\Parser\Client\Browser;
 use DeviceDetector\Parser\Client\FastFeedReader;
 use DeviceDetector\Parser\Client\FeedReader;
+use DeviceDetector\Parser\Client\Hints\AppHints;
+use DeviceDetector\Parser\Client\Hints\BrowserHints;
 use DeviceDetector\Parser\Client\Library;
 use DeviceDetector\Parser\Client\MediaPlayer;
 use DeviceDetector\Parser\Client\MobileApp;
@@ -21,6 +23,9 @@ use DeviceDetector\Parser\Device\Mobile;
 use DeviceDetector\Parser\Device\Notebook;
 use DeviceDetector\Parser\Device\PortableMediaPlayer;
 use DeviceDetector\Parser\Device\ShellTv;
+use DeviceDetector\Parser\FastBot;
+use DeviceDetector\Parser\OperatingSystem;
+use DeviceDetector\Parser\VendorFragment;
 use DeviceDetector\Tests\Benchmark\Cache\NoopCache;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
@@ -56,8 +61,10 @@ class DeviceDetectorBench
 
     public function provideParsers()
     {
+        yield Browser\Engine::class => [Browser\Engine::class];
+        yield AppHints::class => [AppHints::class];
+        yield BrowserHints::class => [BrowserHints::class];
         yield FeedReader::class => [FeedReader::class];
-        yield FastFeedReader::class => [FastFeedReader::class]; // Only one made ready as PoC.
         yield MobileApp::class => [MobileApp::class];
         yield MediaPlayer::class => [MediaPlayer::class];
         yield PIM::class => [PIM::class];
@@ -72,5 +79,7 @@ class DeviceDetectorBench
         yield PortableMediaPlayer::class => [PortableMediaPlayer::class];
         yield Mobile::class => [Mobile::class];
         yield Bot::class => [Bot::class];
+        yield OperatingSystem::class => [OperatingSystem::class];
+        yield VendorFragment::class => [VendorFragment::class];
     }
 }

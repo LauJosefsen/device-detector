@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Device Detector - The Universal Device Detection library for parsing User Agents
  *
@@ -21,6 +20,9 @@ namespace DeviceDetector\Parser;
  */
 class Bot extends AbstractBotParser
 {
+    protected $overAllMatch = PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_BOT_OVERALL_MATCH;
+    protected $regexList = PrecompiledYaml::PRECOMPILED_DEVICEDETECTOR_PARSER_BOT_REGEXES;
+
     /**
      * @var string
      */
@@ -71,7 +73,7 @@ class Bot extends AbstractBotParser
                 return [true];
             }
 
-            foreach ($this->getRegexes() as $regex) {
+            foreach ($this->regexList as $regex) {
                 $matches = $this->matchUserAgent($regex['regex']);
 
                 if ($matches) {
